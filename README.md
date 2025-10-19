@@ -84,9 +84,7 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 - **Nenhum componente tem correlação forte** (todos < 0.15), indicando que a relação felicidade-CO2 é complexa e multifatorial
 - **Conclusão:** A felicidade baseada em consumo material aumenta emissões, enquanto felicidade baseada em valores sociais pode ser mais sustentável
 
-**Visualização:**
-
-![Insight 2 - Decomposição dos Componentes da Felicidade](charts/insight_2_grafico.png)
+**Visualização:** charts/insight_2_grafico.png
 
 ---
 
@@ -234,9 +232,7 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 - **Grande dispersão dos dados** mostra que poluir muito **NÃO garante** felicidade (Índia é 4º maior poluidor mas tem felicidade baixa)
 - **Conclusão:** Existe uma "dívida ambiental" onde alguns países desenvolvidos se beneficiaram da industrialização poluente, mas este **NÃO é o único caminho** para felicidade. Países podem ser felizes sem histórico de alta poluição.
 
-**Visualização:**
-
-![Insight 5 - Emissões Históricas vs Felicidade Atual](charts/insight_5_grafico.png)
+**Visualização:** charts/insight_5_grafico.png
 
 ---
 
@@ -319,9 +315,7 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 - **Países RICOS (Q4) apresentam padrão misto**: média positiva mas mediana negativa, indicando que a maioria consegue desacoplar crescimento de emissões
 - **Conclusão:** Existe uma "janela de oportunidade" no desenvolvimento intermediário (renda média) onde países conseguem fazer catching-up sustentável. Países mais pobres tendem a seguir modelos poluentes tradicionais, sugerindo necessidade de transferência de tecnologias limpas para evitar lock-in em trajetórias insustentáveis.
 
-**Visualização:**
-
-![Insight 7 - Catching-up Sustentável](charts/insight_7_grafico.png)
+**Visualização:** charts/insight_7_grafico.png
 
 ---
 
@@ -357,9 +351,7 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 - **Governança sozinha não resolve**: Mesmo países com alta governança têm dificuldade de reduzir emissões se não tiverem recursos econômicos
 - **Conclusão:** Indicadores de governança têm **impacto limitado** na redução de emissões comparado ao poder econômico. **Trust** importa mais que **Freedom** porque reflete capacidade do governo implementar políticas de longo prazo. O **desenvolvimento econômico** continua sendo o **preditor mais forte** da capacidade de reduzir emissões mantendo qualidade de vida.
 
-**Visualização:**
-
-![Insight 8 - Governança e Redução de Emissões](charts/insight_8_grafico.png)
+**Visualização:** charts/insight_8_grafico.png
 
 ---
 
@@ -412,9 +404,7 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 - **Costa Rica é destaque latino**: Único país em desenvolvimento que alcançou o modelo, mostrando que **não é necessário ser rico** para ser sustentável
 - **Conclusão:** O "Modelo Nórdico" existe e é **caracterizado por investimento em coesão social e saúde ao invés de consumo material**. É **replicável** mas **desafiador** - apenas 7 de 133 países conseguiram. Demonstra que é possível ter **alta qualidade de vida com baixo impacto ambiental** quando sociedade prioriza valores coletivos sobre individualismo consumista.
 
-**Visualização:**
-
-![Insight 9 - Modelo Nórdico de Coesão Social](charts/insight_9_grafico.png)
+**Visualização:** charts/insight_9_grafico.png
 
 ---
 
