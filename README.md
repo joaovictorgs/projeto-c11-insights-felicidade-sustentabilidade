@@ -120,11 +120,40 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 
 ---
 
-### Insight 7 🚧
+### Insight 7 ✅
 
 **Pergunta:** Países em desenvolvimento conseguem aumentar felicidade sem aumentar CO2 proporcionalmente?
 
-**Status:** Não iniciado
+**Metodologia:**
+
+- Divisão de países em quartis por PIB per capita (2015)
+- Cálculo de mudanças na felicidade e CO2 (2015-2019)
+- Métrica: "Intensidade de Carbono da Felicidade" = ΔCO2 / ΔHappiness
+- Análise de 129 países com dados completos
+
+**Resultados:**
+
+| Quartil PIB | Intensidade Média | Intensidade Mediana | Interpretação                           |
+| ----------- | ----------------- | ------------------- | --------------------------------------- |
+| Q1-Pobres   | +10,444           | +433                | 🟡 Aumentam CO2 moderadamente           |
+| Q2-Baixo    | +394,371          | +2,848              | 🔴 Muito poluente para crescer          |
+| Q3-Médio    | -44,341           | -55                 | 🟢 Crescem REDUZINDO CO2!               |
+| Q4-Ricos    | +26,561           | -1,819              | 🟢 Mediana negativa (maioria desacopla) |
+
+**Países que Cresceram SEM Poluir:**
+
+- **18 países** conseguiram aumentar felicidade E reduzir CO2 simultaneamente (2015-2019)
+- Concentrados principalmente no quartil Q3 (renda média)
+
+**Análise:**
+
+- **Países de renda MÉDIA (Q3) são os campeões do catching-up sustentável** com intensidade negativa (-44,341), conseguindo aumentar felicidade enquanto reduzem emissões
+- **Países de renda BAIXA (Q2) apresentam o pior desempenho** com intensidade extremamente alta (+394,371), indicando que estão replicando trajetórias poluentes dos países desenvolvidos
+- **Países POBRES (Q1) têm impacto moderado**, com aumento de CO2 controlado durante crescimento
+- **Países RICOS (Q4) apresentam padrão misto**: média positiva mas mediana negativa, indicando que a maioria consegue desacoplar crescimento de emissões
+- **Conclusão:** Existe uma "janela de oportunidade" no desenvolvimento intermediário (renda média) onde países conseguem fazer catching-up sustentável. Países mais pobres tendem a seguir modelos poluentes tradicionais, sugerindo necessidade de transferência de tecnologias limpas para evitar lock-in em trajetórias insustentáveis.
+
+**Visualização:** insight7_analise.png
 
 ---
 
