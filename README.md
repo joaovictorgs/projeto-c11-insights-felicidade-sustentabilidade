@@ -84,7 +84,9 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 - **Nenhum componente tem correlação forte** (todos < 0.15), indicando que a relação felicidade-CO2 é complexa e multifatorial
 - **Conclusão:** A felicidade baseada em consumo material aumenta emissões, enquanto felicidade baseada em valores sociais pode ser mais sustentável
 
-**Visualização:** insight2_analise.png
+**Visualização:**
+
+![Insight 2 - Decomposição dos Componentes da Felicidade](charts/insight_2_grafico.png)
 
 ---
 
@@ -232,7 +234,9 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 - **Grande dispersão dos dados** mostra que poluir muito **NÃO garante** felicidade (Índia é 4º maior poluidor mas tem felicidade baixa)
 - **Conclusão:** Existe uma "dívida ambiental" onde alguns países desenvolvidos se beneficiaram da industrialização poluente, mas este **NÃO é o único caminho** para felicidade. Países podem ser felizes sem histórico de alta poluição.
 
-**Visualização:** insight5_analise.png
+**Visualização:**
+
+![Insight 5 - Emissões Históricas vs Felicidade Atual](charts/insight_5_grafico.png)
 
 ---
 
@@ -315,23 +319,102 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 - **Países RICOS (Q4) apresentam padrão misto**: média positiva mas mediana negativa, indicando que a maioria consegue desacoplar crescimento de emissões
 - **Conclusão:** Existe uma "janela de oportunidade" no desenvolvimento intermediário (renda média) onde países conseguem fazer catching-up sustentável. Países mais pobres tendem a seguir modelos poluentes tradicionais, sugerindo necessidade de transferência de tecnologias limpas para evitar lock-in em trajetórias insustentáveis.
 
-**Visualização:** insight7_analise.png
+**Visualização:**
+
+![Insight 7 - Catching-up Sustentável](charts/insight_7_grafico.png)
 
 ---
 
-### Insight 8 🚧
+### Insight 8 ✅
 
 **Pergunta:** Indicadores de governança (Freedom, Trust) ajudam a reduzir emissões?
 
-**Status:** Não iniciado
+**Metodologia:**
+
+- Cálculo da taxa de redução de CO2 por país (2015-2019)
+- Correlação de Pearson entre indicadores de governança (Freedom, Trust) e taxa de redução
+- Análise de controle com GDP per capita
+- Análise de 140 países com dados completos
+
+**Resultados:**
+
+| Indicador      | Correlação (r) | Interpretação                       |
+| -------------- | -------------- | ----------------------------------- |
+| Freedom        | -0.041         | 🟡 Efeito negligível                |
+| Trust          | -0.121         | 🟢 Efeito negativo fraco            |
+| GDP per capita | -0.533         | 🟢 Efeito negativo moderado (forte) |
+
+**Performance de Redução:**
+
+- **45 de 140 países** (32.1%) conseguiram reduzir emissões no período
+- **95 de 140 países** (67.9%) aumentaram emissões
+
+**Análise:**
+
+- **Trust tem efeito pequeno mas real** (r=-0.121): Países com maior confiança no governo tendem levemente a reduzir mais emissões
+- **Freedom tem efeito quase inexistente** (r=-0.041): Liberdades individuais não impactam significativamente políticas ambientais
+- **GDP é o fator mais importante** (r=-0.533): Países ricos conseguem reduzir emissões muito mais que países pobres
+- **Governança sozinha não resolve**: Mesmo países com alta governança têm dificuldade de reduzir emissões se não tiverem recursos econômicos
+- **Conclusão:** Indicadores de governança têm **impacto limitado** na redução de emissões comparado ao poder econômico. **Trust** importa mais que **Freedom** porque reflete capacidade do governo implementar políticas de longo prazo. O **desenvolvimento econômico** continua sendo o **preditor mais forte** da capacidade de reduzir emissões mantendo qualidade de vida.
+
+**Visualização:**
+
+![Insight 8 - Governança e Redução de Emissões](charts/insight_8_grafico.png)
 
 ---
 
-### Insight 9 🚧
+### Insight 9 ✅
 
-**Pergunta:** Existe um cluster de países com alta felicidade E baixas emissões?
+**Pergunta:** Existe um cluster de países com alta felicidade E baixas emissões (modelo nórdico de coesão social)?
 
-**Status:** Não iniciado
+**Metodologia:**
+
+- Análise de clustering baseada em 3 dimensões: Family (suporte social), Life_Expectancy (saúde), CO2 (sustentabilidade)
+- Critério "Modelo Nórdico": Top 75% em Family E Life_Expectancy E Bottom 25% em CO2
+- Análise de dados de 2019 (133 países)
+- Identificação de países com alta coesão social + baixas emissões
+
+**Resultados:**
+
+**Clusters Identificados:**
+
+| Cluster                         | Países | % Total | Características                              |
+| ------------------------------- | ------ | ------- | -------------------------------------------- |
+| 🌟 Modelo Nórdico               | 7      | 5.3%    | Alta felicidade, alta longevidade, baixo CO2 |
+| 🏭 Desenvolvidos Insustentáveis | 28     | 21.1%   | Alta felicidade/longevidade, ALTO CO2        |
+| 🌱 Em Desenvolvimento           | 98     | 73.7%   | Baixa/média felicidade, baixo/médio CO2      |
+
+**Países do "Modelo Nórdico" (7 países):**
+
+1. **Costa Rica**: Family=1.34, Life_Expectancy=1.10, CO2=7.360kt
+2. **Iceland**: Family=1.48, Life_Expectancy=0.95, CO2=1.640kt
+3. **Luxembourg**: Family=1.32, Life_Expectancy=1.03, CO2=8.830kt
+4. **New Zealand**: Family=1.47, Life_Expectancy=1.03, CO2=31.110kt
+5. **Norway**: Family=1.49, Life_Expectancy=1.03, CO2=33.460kt
+6. **Singapore**: Family=1.34, Life_Expectancy=1.14, CO2=40.790kt
+7. **Switzerland**: Family=1.41, Life_Expectancy=1.09, CO2=33.360kt
+
+**Médias por Cluster:**
+
+| Cluster        | Family (Suporte Social) | Life_Expectancy (Saúde) | CO2 (kt) |
+| -------------- | ----------------------- | ----------------------- | -------- |
+| Modelo Nórdico | 1.41                    | 1.05                    | 22.364   |
+| Desenvolvidos  | 1.27                    | 0.88                    | 277.525  |
+| Em Desenv.     | 1.03                    | 0.49                    | 90.238   |
+
+**Análise:**
+
+- **Apenas 5.3% dos países alcançam o "Modelo Nórdico"**: Combinação de alta coesão social + longevidade + baixas emissões é **extremamente rara**
+- **Grupo é diverso geograficamente**: Inclui países europeus (Iceland, Norway, Switzerland, Luxembourg), asiáticos (Singapore), oceânicos (New Zealand) e latino-americanos (Costa Rica)
+- **Não é exclusivamente nórdico**: Apenas 2 dos 7 países são escandinavos, sugerindo que o modelo é **replicável** em diferentes contextos culturais
+- **Diferença dramática nas emissões**: Modelo Nórdico emite **12x menos** que países desenvolvidos tradicionais (22kt vs 278kt), mantendo níveis similares de bem-estar social
+- **Coesão social é o diferencial**: Family score médio de 1.41 (vs 1.27 desenvolvidos) indica que **qualidade das relações sociais** substitui consumo material
+- **Costa Rica é destaque latino**: Único país em desenvolvimento que alcançou o modelo, mostrando que **não é necessário ser rico** para ser sustentável
+- **Conclusão:** O "Modelo Nórdico" existe e é **caracterizado por investimento em coesão social e saúde ao invés de consumo material**. É **replicável** mas **desafiador** - apenas 7 de 133 países conseguiram. Demonstra que é possível ter **alta qualidade de vida com baixo impacto ambiental** quando sociedade prioriza valores coletivos sobre individualismo consumista.
+
+**Visualização:**
+
+![Insight 9 - Modelo Nórdico de Coesão Social](charts/insight_9_grafico.png)
 
 ---
 
