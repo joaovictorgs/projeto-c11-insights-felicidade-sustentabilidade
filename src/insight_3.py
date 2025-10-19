@@ -105,8 +105,104 @@ def main():
     ax6.grid(True, alpha=0.3)
     
     plt.tight_layout()
-    plt.savefig('insight_3_paradoxo_desenvolvimento.png', dpi=300, bbox_inches='tight')
-    plt.show()
+    
+    plt.figure(figsize=(10, 8))
+    plt.scatter(df_clean['GDP'], df_clean['Score'], alpha=0.7, color='blue', s=50)
+    z = np.polyfit(df_clean['GDP'], df_clean['Score'], 1)
+    p = np.poly1d(z)
+    plt.plot(df_clean['GDP'], p(df_clean['GDP']), "r--", linewidth=2)
+    plt.xlabel('PIB per capita')
+    plt.ylabel('Happiness Score')
+    plt.title('PIB vs Felicidade')
+    plt.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.savefig('insight_3_grafico_1_pib_vs_felicidade.jpg', dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    plt.figure(figsize=(10, 8))
+    plt.scatter(df_clean['GDP'], df_clean['CO2_Emissions'], alpha=0.7, color='red', s=50)
+    z2 = np.polyfit(df_clean['GDP'], df_clean['CO2_Emissions'], 1)
+    p2 = np.poly1d(z2)
+    plt.plot(df_clean['GDP'], p2(df_clean['GDP']), "b--", linewidth=2)
+    plt.xlabel('PIB per capita')
+    plt.ylabel('CO2 Emissions (kt)')
+    plt.title('PIB vs CO2')
+    plt.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.savefig('insight_3_grafico_2_pib_vs_co2.jpg', dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    plt.figure(figsize=(10, 8))
+    plt.scatter(df_clean['Score'], df_clean['CO2_Emissions'], alpha=0.7, color='green', s=50)
+    z3 = np.polyfit(df_clean['Score'], df_clean['CO2_Emissions'], 1)
+    p3 = np.poly1d(z3)
+    plt.plot(df_clean['Score'], p3(df_clean['Score']), "orange", linestyle="--", linewidth=2)
+    plt.xlabel('Happiness Score')
+    plt.ylabel('CO2 Emissions (kt)')
+    plt.title('Felicidade vs CO2')
+    plt.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.savefig('insight_3_grafico_3_felicidade_vs_co2.jpg', dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    fig = plt.figure(figsize=(12, 10))
+    ax = fig.add_subplot(111, projection='3d')
+    scatter = ax.scatter(df_clean['GDP'], df_clean['Score'], df_clean['CO2_Emissions'], 
+                         c=df_clean['CO2_Emissions'], cmap='RdYlGn_r', s=60, alpha=0.8)
+    ax.set_xlabel('PIB per capita')
+    ax.set_ylabel('Happiness Score')
+    ax.set_zlabel('CO2 Emissions (kt)')
+    ax.set_title('Análise 3D: PIB x Felicidade x CO2')
+    plt.colorbar(scatter, ax=ax, label='CO2 Emissions (kt)')
+    plt.tight_layout()
+    plt.savefig('insight_3_grafico_4_analise_3d.jpg', dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    df_clean['GDP_quartile'] = pd.qcut(df_clean['GDP'], 4, labels=['Q1-Baixo', 'Q2-Médio-Baixo', 'Q3-Médio-Alto', 'Q4-Alto'])
+    
+    fig, ax1 = plt.subplots(figsize=(12, 8))
+    quartile_co2 = df_clean.groupby('GDP_quartile')['CO2_Emissions'].mean()
+    quartile_happiness = df_clean.groupby('GDP_quartile')['Score'].mean()
+    
+    colors = ['red', 'orange', 'yellow', 'green']
+    bars1 = ax1.bar([x - 0.2 for x in range(len(quartile_co2))], quartile_co2.values, 
+                   width=0.4, color=colors, alpha=0.7, label='CO2 Médio (kt)')
+    
+    ax2 = ax1.twinx()
+    bars2 = ax2.bar([x + 0.2 for x in range(len(quartile_happiness))], quartile_happiness.values, 
+                        width=0.4, color='blue', alpha=0.7, label='Felicidade Média')
+    
+    ax1.set_xlabel('Quartil de PIB')
+    ax1.set_ylabel('CO2 Emissions (kt)', color='red')
+    ax2.set_ylabel('Happiness Score', color='blue')
+    ax1.set_title('CO2 e Felicidade por Quartil de PIB')
+    ax1.set_xticks(range(len(quartile_co2)))
+    ax1.set_xticklabels(quartile_co2.index, rotation=45)
+    ax1.grid(True, alpha=0.3)
+    
+    ax1.legend(loc='upper left')
+    ax2.legend(loc='upper right')
+    plt.tight_layout()
+    plt.savefig('insight_3_grafico_5_quartis_pib.jpg', dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    df_clean['efficiency'] = df_clean['Score'] / (df_clean['CO2_Emissions'] / 1000 + 1)
+    top_efficient = df_clean.nlargest(10, 'efficiency')
+    bottom_efficient = df_clean.nsmallest(10, 'efficiency')
+    
+    plt.figure(figsize=(10, 8))
+    plt.scatter(top_efficient['GDP'], top_efficient['Score'], 
+               color='green', label='Top 10 Eficientes', s=80, alpha=0.8)
+    plt.scatter(bottom_efficient['GDP'], bottom_efficient['Score'], 
+               color='red', label='Bottom 10 Eficientes', s=80, alpha=0.8)
+    plt.xlabel('PIB per capita')
+    plt.ylabel('Happiness Score')
+    plt.title('Países Eficientes vs Ineficientes')
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.savefig('insight_3_grafico_6_eficientes_vs_ineficientes.jpg', dpi=300, bbox_inches='tight')
+    plt.close()
     
     print(f"\nTOP 5 PAÍSES EFICIENTES (Alta felicidade, baixo CO2):")
     print("-" * 50)
@@ -118,7 +214,13 @@ def main():
     for i, (_, row) in enumerate(bottom_efficient.head().iterrows(), 1):
         print(f"{i}. {row['Country']}: Felicidade={row['Score']:.2f}, CO2={row['CO2_Emissions']:.0f}kt")
     
-    print(f"\n✓ Gráfico salvo: insight_3_paradoxo_desenvolvimento.png")
+    print(f"\n✓ 6 gráficos salvos:")
+    print(f"  - insight_3_grafico_1_pib_vs_felicidade.jpg")
+    print(f"  - insight_3_grafico_2_pib_vs_co2.jpg")
+    print(f"  - insight_3_grafico_3_felicidade_vs_co2.jpg")
+    print(f"  - insight_3_grafico_4_analise_3d.jpg")
+    print(f"  - insight_3_grafico_5_quartis_pib.jpg")
+    print(f"  - insight_3_grafico_6_eficientes_vs_ineficientes.jpg")
 
 
 if __name__ == "__main__":

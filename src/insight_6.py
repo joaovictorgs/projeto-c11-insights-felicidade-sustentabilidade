@@ -127,8 +127,106 @@ def main():
     ax4.legend(handles=legend_elements)
     
     plt.tight_layout()
-    plt.savefig('insight_6_trajetoria_temporal.png', dpi=300, bbox_inches='tight')
-    plt.show()
+    
+    happy_yearly = df_happy.groupby('Year')['CO2_Emissions'].mean()
+    unhappy_yearly = df_unhappy.groupby('Year')['CO2_Emissions'].mean()
+    
+    plt.figure(figsize=(12, 8))
+    plt.plot(happy_yearly.index, happy_yearly.values, 'o-', 
+             color='green', linewidth=3, markersize=8, label=f'Países Felizes (n={len(happy_countries)})')
+    plt.plot(unhappy_yearly.index, unhappy_yearly.values, 'o-', 
+             color='red', linewidth=3, markersize=8, label=f'Países Infelizes (n={len(unhappy_countries)})')
+    plt.xlabel('Ano')
+    plt.ylabel('CO2 Médio (kt)')
+    plt.title('Evolução das Emissões de CO2\nPaíses Felizes vs Infelizes')
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.savefig('insight_6_grafico_1_evolucao_co2.jpg', dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    happy_change = []
+    unhappy_change = []
+    
+    for country in happy_countries:
+        country_data = df_happy[df_happy['Country'] == country].sort_values('Year')
+        if len(country_data) >= 3:
+            change = (country_data['CO2_Emissions'].iloc[-1] - country_data['CO2_Emissions'].iloc[0]) / country_data['CO2_Emissions'].iloc[0] * 100
+            happy_change.append(change)
+    
+    for country in unhappy_countries:
+        country_data = df_unhappy[df_unhappy['Country'] == country].sort_values('Year')
+        if len(country_data) >= 3:
+            change = (country_data['CO2_Emissions'].iloc[-1] - country_data['CO2_Emissions'].iloc[0]) / country_data['CO2_Emissions'].iloc[0] * 100
+            unhappy_change.append(change)
+    
+    plt.figure(figsize=(10, 8))
+    plt.boxplot([happy_change, unhappy_change], 
+                tick_labels=['Países Felizes', 'Países Infelizes'],
+                patch_artist=True,
+                boxprops=dict(facecolor='lightblue', alpha=0.7),
+                medianprops=dict(color='red', linewidth=2))
+    plt.ylabel('Variação % CO2 (2015-2019)')
+    plt.title('Distribuição da Variação de CO2')
+    plt.grid(True, alpha=0.3)
+    plt.axhline(y=0, color='black', linestyle='--', alpha=0.7)
+    plt.tight_layout()
+    plt.savefig('insight_6_grafico_2_variacao_co2.jpg', dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    years = [2015, 2016, 2017, 2018, 2019]
+    co2_diff_by_year = []
+    
+    for year in years:
+        happy_year = df_happy[df_happy['Year'] == year]['CO2_Emissions'].mean()
+        unhappy_year = df_unhappy[df_unhappy['Year'] == year]['CO2_Emissions'].mean()
+        diff = happy_year - unhappy_year
+        co2_diff_by_year.append(diff)
+    
+    plt.figure(figsize=(10, 8))
+    colors = ['green' if x > 0 else 'red' for x in co2_diff_by_year]
+    bars = plt.bar(years, co2_diff_by_year, color=colors, alpha=0.7, edgecolor='black')
+    plt.xlabel('Ano')
+    plt.ylabel('Diferença CO2 (Felizes - Infelizes)')
+    plt.title('Gap de Emissões entre Grupos por Ano')
+    plt.grid(True, alpha=0.3)
+    plt.axhline(y=0, color='black', linestyle='--', linewidth=2)
+    
+    for bar, value in zip(bars, co2_diff_by_year):
+        plt.text(bar.get_x() + bar.get_width()/2, bar.get_height() + (5000 if value > 0 else -8000),
+                f'{value:.0f}', ha='center', va='bottom' if value > 0 else 'top', fontweight='bold')
+    
+    plt.tight_layout()
+    plt.savefig('insight_6_grafico_3_gap_emissoes.jpg', dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    sample_happy = df_happy[df_happy['Country'].isin(happy_countries[:5])]
+    sample_unhappy = df_unhappy[df_unhappy['Country'].isin(unhappy_countries[:5])]
+    
+    plt.figure(figsize=(10, 8))
+    
+    for country in sample_happy['Country'].unique():
+        country_data = sample_happy[sample_happy['Country'] == country].sort_values('Year')
+        plt.plot(country_data['Year'], country_data['CO2_Emissions'], 
+                'o-', alpha=0.7, color='green', linewidth=2)
+    
+    for country in sample_unhappy['Country'].unique():
+        country_data = sample_unhappy[sample_unhappy['Country'] == country].sort_values('Year')
+        plt.plot(country_data['Year'], country_data['CO2_Emissions'], 
+                'o-', alpha=0.7, color='red', linewidth=2)
+    
+    plt.xlabel('Ano')
+    plt.ylabel('CO2 Emissions (kt)')
+    plt.title('Trajetórias Individuais (Amostra de 5 países cada)')
+    plt.grid(True, alpha=0.3)
+    
+    from matplotlib.lines import Line2D
+    legend_elements = [Line2D([0], [0], color='green', lw=2, label='Países Felizes'),
+                      Line2D([0], [0], color='red', lw=2, label='Países Infelizes')]
+    plt.legend(handles=legend_elements)
+    plt.tight_layout()
+    plt.savefig('insight_6_grafico_4_trajetorias_individuais.jpg', dpi=300, bbox_inches='tight')
+    plt.close()
     
     print(f"\nRESUMO DA ANÁLISE:")
     print("-" * 50)
@@ -148,7 +246,11 @@ def main():
         happiness_score = happiness_avg[country]
         print(f"{i:2d}. {country} (Felicidade: {happiness_score:.2f})")
     
-    print(f"\n✓ Gráfico salvo: insight_6_trajetoria_temporal.png")
+    print(f"\n✓ 4 gráficos salvos:")
+    print(f"  - insight_6_grafico_1_evolucao_co2.jpg")
+    print(f"  - insight_6_grafico_2_variacao_co2.jpg")
+    print(f"  - insight_6_grafico_3_gap_emissoes.jpg")
+    print(f"  - insight_6_grafico_4_trajetorias_individuais.jpg")
 
 
 if __name__ == "__main__":

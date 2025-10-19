@@ -148,8 +148,77 @@ def main():
         ax4.invert_yaxis()
     
     plt.tight_layout()
-    plt.savefig('insight_10_projecoes_2025.png', dpi=300, bbox_inches='tight')
-    plt.show()
+    
+    colors = {'IDEAL': 'green', 'TRADE-OFF': 'orange', 'PREOCUPANTE': 'red', 'ESTAGNAÇÃO': 'gray'}
+    
+    plt.figure(figsize=(12, 10))
+    for traj in df_trends['trajectory'].unique():
+        subset = df_trends[df_trends['trajectory'] == traj]
+        plt.scatter(subset['happiness_slope'], subset['co2_slope'], 
+                   color=colors[traj], label=f'{traj} ({len(subset)})', 
+                   alpha=0.7, s=60, edgecolors='black', linewidth=0.5)
+    
+    plt.axhline(y=0, color='black', linestyle='--', alpha=0.7)
+    plt.axvline(x=0, color='black', linestyle='--', alpha=0.7)
+    plt.xlabel('Tendência de Felicidade (slope)')
+    plt.ylabel('Tendência de CO2 (slope)')
+    plt.title('Classificação de Trajetórias (2015-2019)')
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    
+    plt.text(0.02, 0.98, 'Q2: TRADE-OFF\n↑Felicidade ↑CO2', transform=plt.gca().transAxes, 
+             bbox=dict(boxstyle='round', facecolor='orange', alpha=0.7), 
+             verticalalignment='top', fontsize=9)
+    plt.text(0.02, 0.02, 'Q3: PREOCUPANTE\n↓Felicidade ↑CO2', transform=plt.gca().transAxes, 
+             bbox=dict(boxstyle='round', facecolor='red', alpha=0.7), 
+             verticalalignment='bottom', fontsize=9)
+    plt.text(0.72, 0.98, 'Q1: IDEAL\n↑Felicidade ↓CO2', transform=plt.gca().transAxes, 
+             bbox=dict(boxstyle='round', facecolor='green', alpha=0.7), 
+             verticalalignment='top', fontsize=9)
+    plt.text(0.72, 0.02, 'Q4: ESTAGNAÇÃO\n↓Felicidade ↓CO2', transform=plt.gca().transAxes, 
+             bbox=dict(boxstyle='round', facecolor='gray', alpha=0.7), 
+             verticalalignment='bottom', fontsize=9)
+    
+    plt.tight_layout()
+    plt.savefig('insight_10_grafico_1_classificacao_trajetorias.jpg', dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    plt.figure(figsize=(10, 8))
+    wedges, texts, autotexts = plt.pie(trajectory_counts.values, labels=trajectory_counts.index, 
+                                      colors=[colors[x] for x in trajectory_counts.index],
+                                      autopct='%1.1f%%', startangle=90)
+    plt.title('Distribuição de Trajetórias')
+    plt.tight_layout()
+    plt.savefig('insight_10_grafico_2_distribuicao_trajetorias.jpg', dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    ideal_countries = df_trends[df_trends['trajectory'] == 'IDEAL'].head(10)
+    if len(ideal_countries) > 0:
+        plt.figure(figsize=(10, 8))
+        bars = plt.barh(range(len(ideal_countries)), ideal_countries['happiness_slope'], 
+                       color='green', alpha=0.7)
+        plt.yticks(range(len(ideal_countries)), ideal_countries['Country'], fontsize=8)
+        plt.xlabel('Tendência de Felicidade (slope)')
+        plt.title('TOP Países com Trajetória IDEAL\n(↑Felicidade ↓CO2)')
+        plt.grid(True, alpha=0.3)
+        plt.gca().invert_yaxis()
+        plt.tight_layout()
+        plt.savefig('insight_10_grafico_3_paises_ideais.jpg', dpi=300, bbox_inches='tight')
+        plt.close()
+    
+    preoccupying_countries = df_trends[df_trends['trajectory'] == 'PREOCUPANTE'].head(10)
+    if len(preoccupying_countries) > 0:
+        plt.figure(figsize=(10, 8))
+        bars = plt.barh(range(len(preoccupying_countries)), preoccupying_countries['co2_slope'], 
+                       color='red', alpha=0.7)
+        plt.yticks(range(len(preoccupying_countries)), preoccupying_countries['Country'], fontsize=8)
+        plt.xlabel('Tendência de CO2 (slope)')
+        plt.title('Países com Trajetória PREOCUPANTE\n(↓Felicidade ↑CO2)')
+        plt.grid(True, alpha=0.3)
+        plt.gca().invert_yaxis()
+        plt.tight_layout()
+        plt.savefig('insight_10_grafico_4_paises_preocupantes.jpg', dpi=300, bbox_inches='tight')
+        plt.close()
     
     print(f"\nPROJEÇÕES PARA 2025 - TOP 5 POR CATEGORIA:")
     print("="*60)
@@ -169,7 +238,11 @@ def main():
     print(f"\n⚠️  DISCLAIMER: Projeções baseadas em tendências lineares 2015-2019.")
     print(f"    Resultados são exploratórios e não consideram eventos futuros.")
     
-    print(f"\n✓ Gráfico salvo: insight_10_projecoes_2025.png")
+    print(f"\n✓ 4 gráficos salvos:")
+    print(f"  - insight_10_grafico_1_classificacao_trajetorias.jpg")
+    print(f"  - insight_10_grafico_2_distribuicao_trajetorias.jpg")
+    print(f"  - insight_10_grafico_3_paises_ideais.jpg")
+    print(f"  - insight_10_grafico_4_paises_preocupantes.jpg")
 
 
 if __name__ == "__main__":

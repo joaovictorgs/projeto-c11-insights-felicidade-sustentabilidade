@@ -92,10 +92,78 @@ def main():
                 f'{value:.0f}', ha='center', va='bottom', fontweight='bold')
     
     plt.tight_layout()
-    plt.savefig('insight_1_correlacao_felicidade_co2.png', dpi=300, bbox_inches='tight')
-    plt.show()
     
-    print(f"\n✓ Gráfico salvo: insight_1_correlacao_felicidade_co2.png")
+    plt.figure(figsize=(10, 8))
+    plt.subplot(2, 2, 1)
+    plt.scatter(df_clean['Score'], df_clean['CO2_Emissions'], alpha=0.6, color='blue')
+    z = np.polyfit(df_clean['Score'], df_clean['CO2_Emissions'], 1)
+    p = np.poly1d(z)
+    plt.plot(df_clean['Score'], p(df_clean['Score']), "r--", linewidth=2)
+    plt.xlabel('Happiness Score')
+    plt.ylabel('CO2 Emissions (kt)')
+    plt.title('Correlação Geral (2015-2019)')
+    plt.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.savefig('insight_1_grafico_1_correlacao_geral.jpg', dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    plt.figure(figsize=(10, 6))
+    years = list(years_data.keys())
+    corrs = list(years_data.values())
+    plt.plot(years, corrs, 'o-', linewidth=2, markersize=8, color='green')
+    plt.xlabel('Ano')
+    plt.ylabel('Correlação de Pearson')
+    plt.title('Evolução da Correlação por Ano')
+    plt.grid(True, alpha=0.3)
+    plt.axhline(y=0, color='red', linestyle='--', alpha=0.7)
+    plt.tight_layout()
+    plt.savefig('insight_1_grafico_2_evolucao_temporal.jpg', dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    plt.figure(figsize=(10, 8))
+    df_2019 = df_clean[df_clean['Year'] == 2019]
+    top_happy = df_2019.nlargest(20, 'Score')
+    bottom_happy = df_2019.nsmallest(20, 'Score')
+    
+    plt.scatter(top_happy['Score'], top_happy['CO2_Emissions'], 
+                color='green', label='Top 20 Mais Felizes', alpha=0.8, s=50)
+    plt.scatter(bottom_happy['Score'], bottom_happy['CO2_Emissions'], 
+                color='red', label='Top 20 Menos Felizes', alpha=0.8, s=50)
+    plt.xlabel('Happiness Score')
+    plt.ylabel('CO2 Emissions (kt)')
+    plt.title('Extremos de Felicidade (2019)')
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.savefig('insight_1_grafico_3_extremos_felicidade.jpg', dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    plt.figure(figsize=(10, 6))
+    df_2019_clean = df_clean[df_clean['Year'] == 2019].dropna()
+    
+    bins_happiness = pd.cut(df_2019_clean['Score'], bins=4, labels=['Baixa', 'Média-Baixa', 'Média-Alta', 'Alta'])
+    co2_by_happiness = df_2019_clean.groupby(bins_happiness)['CO2_Emissions'].mean()
+    
+    colors = ['red', 'orange', 'yellow', 'green']
+    bars = plt.bar(co2_by_happiness.index, co2_by_happiness.values, color=colors, alpha=0.7)
+    plt.xlabel('Nível de Felicidade')
+    plt.ylabel('CO2 Médio (kt)')
+    plt.title('CO2 Médio por Nível de Felicidade (2019)')
+    plt.grid(True, alpha=0.3)
+    
+    for bar, value in zip(bars, co2_by_happiness.values):
+        plt.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 5000,
+                f'{value:.0f}', ha='center', va='bottom', fontweight='bold')
+    
+    plt.tight_layout()
+    plt.savefig('insight_1_grafico_4_co2_por_nivel.jpg', dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    print(f"\n✓ 4 gráficos salvos:")
+    print(f"  - insight_1_grafico_1_correlacao_geral.jpg")
+    print(f"  - insight_1_grafico_2_evolucao_temporal.jpg")
+    print(f"  - insight_1_grafico_3_extremos_felicidade.jpg")
+    print(f"  - insight_1_grafico_4_co2_por_nivel.jpg")
 
 
 if __name__ == "__main__":
