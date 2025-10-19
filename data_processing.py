@@ -66,25 +66,25 @@ def load_co2_data():
     return df_co2
 
 
-if __name__ == "__main__":
-    print("="*60)
-    print("CARREGAMENTO DE DADOS")
-    print("="*60)
+
+print("="*60)
+print("CARREGAMENTO DE DADOS")
+print("="*60)
     
-    df_happiness = load_happiness_data()
-    df_co2 = load_co2_data()
+df_happiness = load_happiness_data()
+df_co2 = load_co2_data()
     
-    print("\n" + "="*60)
-    print("RESUMO")
-    print("="*60)
-    print(f"\nDataset de Felicidade:")
-    print(f"  - {len(df_happiness)} registros")
-    print(f"  - {df_happiness['Country'].nunique()} países")
-    print(f"  - Colunas: {list(df_happiness.columns)}")
+print("\n" + "="*60)
+print("RESUMO")
+print("="*60)
+print(f"\nDataset de Felicidade:")
+print(f"  - {len(df_happiness)} registros")
+print(f"  - {df_happiness['Country'].nunique()} países")
+print(f"  - Colunas: {list(df_happiness.columns)}")
     
-    print(f"\nDataset de CO2:")
-    print(f"  - {len(df_co2)} registros")
-    print(f"  - {df_co2['Country'].nunique()} países")
-    print(f"  - Colunas: {list(df_co2.columns)}")
+print(f"\nDataset de CO2:")
+print(f"  - {len(df_co2)} registros")
+print(f"  - {df_co2['Country'].nunique()} países")
+print(f"  - Colunas: {list(df_co2.columns)}")
     
-    print("\n✓ Processamento concluído!")
+print("\n✓ Processamento concluído!")
