@@ -92,9 +92,9 @@ def main():
     print(f"\n✓ CAMPEÕES SUSTENTÁVEIS (↑felicidade + ↓CO2): {len(quadrant_superior_esq)} países")
     
     plt.tight_layout()
-    output_path = os.path.join(os.path.dirname(__file__), '..', 'insight7_analise.png')
+    output_path = os.path.join(os.path.dirname(__file__), '..', 'charts', 'insight_7_grafico.png')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
-    print(f"\n✓ Gráfico salvo: insight7_analise.png")
+    print(f"\n✓ Gráfico salvo: charts/insight_7_grafico.png")
     plt.close()
 
 

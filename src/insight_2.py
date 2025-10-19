@@ -63,9 +63,9 @@ def main():
         ax.text(x_pos, i, f'{value:+.3f}', va='center', ha=ha, fontweight='bold', fontsize=10)
     
     plt.tight_layout()
-    output_path = os.path.join(os.path.dirname(__file__), '..', 'insight2_analise.png')
+    output_path = os.path.join(os.path.dirname(__file__), '..', 'charts', 'insight_2_grafico.png')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
-    print(f"\n✓ Gráfico salvo: insight2_analise.png")
+    print(f"\n✓ Gráfico salvo: charts/insight_2_grafico.png")
     plt.close()
 
 

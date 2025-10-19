@@ -80,9 +80,9 @@ def main():
     ax.grid(alpha=0.3, which='both')
     
     plt.tight_layout()
-    output_path = os.path.join(os.path.dirname(__file__), '..', 'insight5_analise.png')
+    output_path = os.path.join(os.path.dirname(__file__), '..', 'charts', 'insight_5_grafico.png')
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
-    print(f"\n✓ Gráfico salvo: insight5_analise.png")
+    print(f"\n✓ Gráfico salvo: charts/insight_5_grafico.png")
     plt.close()
     
     top10_poluentes = df_clean.nlargest(10, 'CO2_Cumulativo_1960_2019')[['Country', 'CO2_Cumulativo_1960_2019', 'Happiness_2019']]
