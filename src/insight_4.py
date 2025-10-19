@@ -99,7 +99,7 @@ def main():
     plt.grid(True, alpha=0.3)
     plt.gca().invert_yaxis()
     plt.tight_layout()
-    plt.savefig('insight_4_grafico_1_top_20_eficientes.jpg', dpi=300, bbox_inches='tight')
+    plt.savefig('charts/insight_4_grafico_1_top_20_eficientes.jpg', dpi=300, bbox_inches='tight')
     plt.close()
     
     plt.figure(figsize=(12, 10))
@@ -110,7 +110,7 @@ def main():
     plt.grid(True, alpha=0.3)
     plt.gca().invert_yaxis()
     plt.tight_layout()
-    plt.savefig('insight_4_grafico_2_bottom_20_ineficientes.jpg', dpi=300, bbox_inches='tight')
+    plt.savefig('charts/insight_4_grafico_2_bottom_20_ineficientes.jpg', dpi=300, bbox_inches='tight')
     plt.close()
     
     plt.figure(figsize=(12, 10))
@@ -136,7 +136,7 @@ def main():
     cbar = plt.colorbar(scatter)
     cbar.set_label('Índice de Eficiência')
     plt.tight_layout()
-    plt.savefig('insight_4_grafico_3_mapa_eficiencia.jpg', dpi=300, bbox_inches='tight')
+    plt.savefig('charts/insight_4_grafico_3_mapa_eficiencia.jpg', dpi=300, bbox_inches='tight')
     plt.close()
     
     efficiency_bins = pd.cut(df_clean['efficiency_index'], 
@@ -149,7 +149,7 @@ def main():
                                       colors=colors, autopct='%1.1f%%', startangle=90)
     plt.title('Distribuição de Países por\nNível de Eficiência Ambiental')
     plt.tight_layout()
-    plt.savefig('insight_4_grafico_4_distribuicao_eficiencia.jpg', dpi=300, bbox_inches='tight')
+    plt.savefig('charts/insight_4_grafico_4_distribuicao_eficiencia.jpg', dpi=300, bbox_inches='tight')
     plt.close()
     
     print(f"\nTOP 10 PAÍSES MAIS EFICIENTES:")
@@ -166,7 +166,7 @@ def main():
         print(f"{i:2d}. {row['Country']:20s} | Eficiência: {row['efficiency_index']:6.2f} | "
               f"Felicidade: {row['Score']:4.2f} | CO2: {row['CO2_Emissions']:8.0f}kt")
     
-    print(f"\n✓ 4 gráficos salvos:")
+    print(f"\n✓ 4 gráficos salvos em charts/:")
     print(f"  - insight_4_grafico_1_top_20_eficientes.jpg")
     print(f"  - insight_4_grafico_2_bottom_20_ineficientes.jpg")
     print(f"  - insight_4_grafico_3_mapa_eficiencia.jpg")

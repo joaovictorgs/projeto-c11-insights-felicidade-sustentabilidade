@@ -104,7 +104,7 @@ def main():
     plt.title('Correlação Geral (2015-2019)')
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
-    plt.savefig('insight_1_grafico_1_correlacao_geral.jpg', dpi=300, bbox_inches='tight')
+    plt.savefig('charts/insight_1_grafico_1_correlacao_geral.jpg', dpi=300, bbox_inches='tight')
     plt.close()
     
     plt.figure(figsize=(10, 6))
@@ -117,7 +117,7 @@ def main():
     plt.grid(True, alpha=0.3)
     plt.axhline(y=0, color='red', linestyle='--', alpha=0.7)
     plt.tight_layout()
-    plt.savefig('insight_1_grafico_2_evolucao_temporal.jpg', dpi=300, bbox_inches='tight')
+    plt.savefig('charts/insight_1_grafico_2_evolucao_temporal.jpg', dpi=300, bbox_inches='tight')
     plt.close()
     
     plt.figure(figsize=(10, 8))
@@ -135,7 +135,7 @@ def main():
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
-    plt.savefig('insight_1_grafico_3_extremos_felicidade.jpg', dpi=300, bbox_inches='tight')
+    plt.savefig('charts/insight_1_grafico_3_extremos_felicidade.jpg', dpi=300, bbox_inches='tight')
     plt.close()
     
     plt.figure(figsize=(10, 6))
@@ -156,10 +156,10 @@ def main():
                 f'{value:.0f}', ha='center', va='bottom', fontweight='bold')
     
     plt.tight_layout()
-    plt.savefig('insight_1_grafico_4_co2_por_nivel.jpg', dpi=300, bbox_inches='tight')
+    plt.savefig('charts/insight_1_grafico_4_co2_por_nivel.jpg', dpi=300, bbox_inches='tight')
     plt.close()
     
-    print(f"\n✓ 4 gráficos salvos:")
+    print(f"\n✓ 4 gráficos salvos em charts/:")
     print(f"  - insight_1_grafico_1_correlacao_geral.jpg")
     print(f"  - insight_1_grafico_2_evolucao_temporal.jpg")
     print(f"  - insight_1_grafico_3_extremos_felicidade.jpg")

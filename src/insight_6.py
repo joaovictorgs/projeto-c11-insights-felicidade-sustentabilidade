@@ -142,7 +142,7 @@ def main():
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
-    plt.savefig('insight_6_grafico_1_evolucao_co2.jpg', dpi=300, bbox_inches='tight')
+    plt.savefig('charts/insight_6_grafico_1_evolucao_co2.jpg', dpi=300, bbox_inches='tight')
     plt.close()
     
     happy_change = []
@@ -171,7 +171,7 @@ def main():
     plt.grid(True, alpha=0.3)
     plt.axhline(y=0, color='black', linestyle='--', alpha=0.7)
     plt.tight_layout()
-    plt.savefig('insight_6_grafico_2_variacao_co2.jpg', dpi=300, bbox_inches='tight')
+    plt.savefig('charts/insight_6_grafico_2_variacao_co2.jpg', dpi=300, bbox_inches='tight')
     plt.close()
     
     years = [2015, 2016, 2017, 2018, 2019]
@@ -197,7 +197,7 @@ def main():
                 f'{value:.0f}', ha='center', va='bottom' if value > 0 else 'top', fontweight='bold')
     
     plt.tight_layout()
-    plt.savefig('insight_6_grafico_3_gap_emissoes.jpg', dpi=300, bbox_inches='tight')
+    plt.savefig('charts/insight_6_grafico_3_gap_emissoes.jpg', dpi=300, bbox_inches='tight')
     plt.close()
     
     sample_happy = df_happy[df_happy['Country'].isin(happy_countries[:5])]
@@ -225,7 +225,7 @@ def main():
                       Line2D([0], [0], color='red', lw=2, label='Países Infelizes')]
     plt.legend(handles=legend_elements)
     plt.tight_layout()
-    plt.savefig('insight_6_grafico_4_trajetorias_individuais.jpg', dpi=300, bbox_inches='tight')
+    plt.savefig('charts/insight_6_grafico_4_trajetorias_individuais.jpg', dpi=300, bbox_inches='tight')
     plt.close()
     
     print(f"\nRESUMO DA ANÁLISE:")
@@ -246,7 +246,7 @@ def main():
         happiness_score = happiness_avg[country]
         print(f"{i:2d}. {country} (Felicidade: {happiness_score:.2f})")
     
-    print(f"\n✓ 4 gráficos salvos:")
+    print(f"\n✓ 4 gráficos salvos em charts/:")
     print(f"  - insight_6_grafico_1_evolucao_co2.jpg")
     print(f"  - insight_6_grafico_2_variacao_co2.jpg")
     print(f"  - insight_6_grafico_3_gap_emissoes.jpg")

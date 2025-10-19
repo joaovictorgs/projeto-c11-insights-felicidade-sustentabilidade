@@ -180,7 +180,7 @@ def main():
              verticalalignment='bottom', fontsize=9)
     
     plt.tight_layout()
-    plt.savefig('insight_10_grafico_1_classificacao_trajetorias.jpg', dpi=300, bbox_inches='tight')
+    plt.savefig('charts/insight_10_grafico_1_classificacao_trajetorias.jpg', dpi=300, bbox_inches='tight')
     plt.close()
     
     plt.figure(figsize=(10, 8))
@@ -189,7 +189,7 @@ def main():
                                       autopct='%1.1f%%', startangle=90)
     plt.title('Distribuição de Trajetórias')
     plt.tight_layout()
-    plt.savefig('insight_10_grafico_2_distribuicao_trajetorias.jpg', dpi=300, bbox_inches='tight')
+    plt.savefig('charts/insight_10_grafico_2_distribuicao_trajetorias.jpg', dpi=300, bbox_inches='tight')
     plt.close()
     
     ideal_countries = df_trends[df_trends['trajectory'] == 'IDEAL'].head(10)
@@ -203,7 +203,7 @@ def main():
         plt.grid(True, alpha=0.3)
         plt.gca().invert_yaxis()
         plt.tight_layout()
-        plt.savefig('insight_10_grafico_3_paises_ideais.jpg', dpi=300, bbox_inches='tight')
+        plt.savefig('charts/insight_10_grafico_3_paises_ideais.jpg', dpi=300, bbox_inches='tight')
         plt.close()
     
     preoccupying_countries = df_trends[df_trends['trajectory'] == 'PREOCUPANTE'].head(10)
@@ -217,7 +217,7 @@ def main():
         plt.grid(True, alpha=0.3)
         plt.gca().invert_yaxis()
         plt.tight_layout()
-        plt.savefig('insight_10_grafico_4_paises_preocupantes.jpg', dpi=300, bbox_inches='tight')
+        plt.savefig('charts/insight_10_grafico_4_paises_preocupantes.jpg', dpi=300, bbox_inches='tight')
         plt.close()
     
     print(f"\nPROJEÇÕES PARA 2025 - TOP 5 POR CATEGORIA:")
@@ -238,7 +238,7 @@ def main():
     print(f"\n⚠️  DISCLAIMER: Projeções baseadas em tendências lineares 2015-2019.")
     print(f"    Resultados são exploratórios e não consideram eventos futuros.")
     
-    print(f"\n✓ 4 gráficos salvos:")
+    print(f"\n✓ 4 gráficos salvos em charts/:")
     print(f"  - insight_10_grafico_1_classificacao_trajetorias.jpg")
     print(f"  - insight_10_grafico_2_distribuicao_trajetorias.jpg")
     print(f"  - insight_10_grafico_3_paises_ideais.jpg")

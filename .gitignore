@@ -37,15 +37,6 @@ wheels/
 .DS_Store
 Thumbs.db
 
-# Outputs
-*.png
-*.jpg
-*.pdf
-*.html
-
-# Data (se quiser não versionar os CSVs grandes)
-# *.csv
-
-# Enunciado (opcional)
+# Enunciado
 Enunciado_Projeto_C11.pdf
 PROJETO_FINAL_10_INSIGHTS.txt
