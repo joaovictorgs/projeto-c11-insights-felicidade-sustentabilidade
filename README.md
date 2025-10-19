@@ -11,11 +11,49 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 
 ## Insights Analisados
 
-### Insight 1 🚧
+### Insight 1 ✅
 
-**Pergunta:** Países mais felizes emitem mais CO2?
+**Pergunta:** Países com maiores índices de felicidade apresentam menores emissões de CO2 per capita? Qual é a força e direção dessa correlação no período 2015-2019?
 
-**Status:** Não iniciado
+**Metodologia:**
+
+- Correlação de Pearson entre Happiness Score e emissões de CO2
+- Análise de 673 observações (países × anos 2015-2019)
+- Análise temporal ano a ano
+- Comparação entre países mais felizes vs menos felizes
+
+**Resultados:**
+
+| Métrica Principal | Valor       |
+| ----------------- | ----------- |
+| Correlação Geral  | +0.0721     |
+| Força             | Muito fraca |
+| Direção           | Positiva    |
+
+**Evolução Temporal da Correlação:**
+
+- 2015: +0.0701
+- 2016: +0.0689
+- 2017: +0.0745
+- 2018: +0.0698
+- 2019: +0.0763
+
+**CO2 Médio por Nível de Felicidade (2019):**
+
+- **Baixa Felicidade**: 47.580 kt
+- **Média-Baixa**: 158.934 kt
+- **Média-Alta**: 136.842 kt
+- **Alta Felicidade**: 203.029 kt
+
+**Análise:**
+
+- **Correlação positiva muito fraca** (+0.0721) indica que países mais felizes **tendem levemente** a emitir mais CO2, mas a relação é **quase inexistente**
+- **Estabilidade temporal**: Correlação mantém-se consistente entre 2015-2019 (0.07±0.003)
+- **Padrão não-linear**: Países de felicidade média-baixa emitem mais que média-alta, sugerindo relação complexa
+- **Grande variabilidade**: Top 20 países mais felizes vs menos felizes mostram sobreposição significativa nas emissões
+- **Conclusão:** **NÃO existe relação linear forte** entre felicidade e CO2. Outros fatores (desenvolvimento econômico, população, geografia) são mais determinantes das emissões que o nível de felicidade per se.
+
+**Visualização:** insight_1_correlacao_felicidade_co2.png
 
 ---
 
@@ -50,19 +88,105 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 
 ---
 
-### Insight 3 🚧
+### Insight 3 ✅
 
-**Pergunta:** Mudanças no Score de felicidade ao longo do tempo impactam as emissões?
+**Pergunta:** Como PIB per capita, felicidade e emissões de CO2 se relacionam simultaneamente? Existe um threshold de PIB onde a felicidade aumenta sem proporcional aumento nas emissões?
 
-**Status:** Não iniciado
+**Metodologia:**
+
+- Análise tridimensional PIB × Felicidade × CO2 (dados 2019)
+- Divisão em quartis por PIB per capita
+- Índice de eficiência: Felicidade / (CO2/1000 + 1)
+- Análise de 133 países
+
+**Resultados por Quartil de PIB:**
+
+| Quartil PIB    | CO2 Médio (kt) | Felicidade Média | Padrão                         |
+| -------------- | -------------- | ---------------- | ------------------------------ |
+| Q1-Baixo       | 15.847         | 4.45             | 🟢 Baixo CO2, felicidade baixa |
+| Q2-Médio-Baixo | 38.285         | 5.12             | 🟡 CO2 moderado                |
+| Q3-Médio-Alto  | 113.742        | 5.89             | 🟠 CO2 crescente               |
+| Q4-Alto        | 394.826        | 6.95             | 🔴 Alto CO2, alta felicidade   |
+
+**Top 5 Países Mais Eficientes:**
+
+1. **Comoros**: Felicidade=3.97, CO2=320kt
+2. **Iceland**: Felicidade=7.49, CO2=1.640kt
+3. **Somalia**: Felicidade=4.67, CO2=690kt
+4. **Malta**: Felicidade=6.73, CO2=1.660kt
+5. **Central African Republic**: Felicidade=3.08, CO2=240kt
+
+**Bottom 5 Países Menos Eficientes:**
+
+1. **China**: Felicidade=5.19, CO2=10.707.220kt
+2. **United States**: Felicidade=6.89, CO2=4.817.720kt
+3. **India**: Felicidade=4.01, CO2=2.456.300kt
+4. **Japan**: Felicidade=5.89, CO2=1.081.570kt
+5. **Indonesia**: Felicidade=5.19, CO2=619.840kt
+
+**Análise:**
+
+- **Relação PIB-CO2 é mais forte que PIB-Felicidade**: Desenvolvimento econômico está mais associado a poluição que a bem-estar
+- **Não existe threshold claro de desacoplamento**: Crescimento do PIB continua associado a aumento de CO2 em todos os quartis
+- **Pequenos países insulares dominam eficiência**: Geografia e tamanho populacional são fatores-chave
+- **Grandes economias são sistematicamente ineficientes**: Todos os top 5 poluidores têm baixa eficiência
+- **Conclusão:** O **"Paradoxo do Desenvolvimento"** é real - não há evidência de Curva de Kuznets Ambiental. PIB alto **NÃO garante** felicidade proporcional, mas **sempre** aumenta CO2. Modelo de desenvolvimento baseado apenas em crescimento econômico é insustentável.
+
+**Visualização:** insight_3_paradoxo_desenvolvimento.png
 
 ---
 
-### Insight 4 🚧
+### Insight 4 ✅
 
-**Pergunta:** A relação entre felicidade e CO2 varia por região?
+**Pergunta:** Quais países são mais 'eficientes' em gerar felicidade com menores emissões de CO2 per capita? Como se distribuem os países eficientes vs ineficientes?
 
-**Status:** Não iniciado
+**Metodologia:**
+
+- Índice de Eficiência = Happiness Score / (CO2_per_capita_proxy + 0.1)
+- Ranking de 141 países (média 2015-2019)
+- Análise de distribuição por níveis de eficiência
+
+**Resultados:**
+
+**Top 10 Países Mais Eficientes:**
+
+1. **Comoros** - Eficiência: 10.94 | Felicidade: 3.96 | CO2: 262kt
+2. **Central African Republic** - Eficiência: 9.86 | Felicidade: 3.13 | CO2: 218kt
+3. **Djibouti** - Eficiência: 8.34 | Felicidade: 4.37 | CO2: 424kt
+4. **Belize** - Eficiência: 7.96 | Felicidade: 5.96 | CO2: 648kt
+5. **Somalia** - Eficiência: 6.62 | Felicidade: 5.06 | CO2: 664kt
+6. **Lesotho** - Eficiência: 5.05 | Felicidade: 4.08 | CO2: 708kt
+7. **Bhutan** - Eficiência: 4.86 | Felicidade: 5.12 | CO2: 954kt
+8. **Burundi** - Eficiência: 4.69 | Felicidade: 3.08 | CO2: 556kt
+9. **Sierra Leone** - Eficiência: 4.52 | Felicidade: 4.56 | CO2: 908kt
+10. **Iceland** - Eficiência: 4.08 | Felicidade: 7.51 | CO2: 1.740kt
+
+**Bottom 10 Países Menos Eficientes:**
+
+1. **China** - Eficiência: 0.00 | Felicidade: 5.22 | CO2: 10.208.384kt
+2. **United States** - Eficiência: 0.00 | Felicidade: 7.00 | CO2: 4.899.522kt
+3. **India** - Eficiência: 0.00 | Felicidade: 4.30 | CO2: 2.316.382kt
+4. **Japan** - Eficiência: 0.01 | Felicidade: 5.93 | CO2: 1.140.036kt
+5. **Germany** - Eficiência: 0.01 | Felicidade: 6.93 | CO2: 717.352kt
+
+**Distribuição por Níveis de Eficiência:**
+
+- **Muito Alta**: 20.6% dos países
+- **Alta**: 20.6% dos países
+- **Média**: 19.9% dos países
+- **Baixa**: 19.1% dos países
+- **Muito Baixa**: 19.9% dos países
+
+**Análise:**
+
+- **Países pequenos e pobres dominam eficiência**: Top 10 são principalmente nações com baixo desenvolvimento industrial
+- **Iceland é exceção notável**: Único país desenvolvido entre os eficientes (energia geotérmica)
+- **Grandes economias são sistematicamente ineficientes**: Todas potências mundiais estão no bottom por volume absoluto de emissões
+- **Distribuição equilibrada**: Países se distribuem uniformemente entre níveis de eficiência (~20% cada)
+- **Paradoxo da eficiência**: Países mais "eficientes" têm felicidade baixa-moderada, sugerindo que alta eficiência pode indicar subdesenvolvimento
+- **Conclusão:** Eficiência ambiental está **inversamente correlacionada** com desenvolvimento econômico. O desafio é encontrar modelos como **Iceland** (alta felicidade + baixo CO2) através de energia limpa e economia circular.
+
+**Visualização:** insight_4_eficiencia_ambiental.png
 
 ---
 
@@ -112,11 +236,49 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 
 ---
 
-### Insight 6 🚧
+### Insight 6 ✅
 
-**Pergunta:** Existe relação entre variação de CO2 e variação de felicidade?
+**Pergunta:** Países mais felizes (top 20%) reduziram suas emissões de CO2 per capita mais rapidamente que países menos felizes (bottom 20%) no período 2015-2019?
 
-**Status:** Não iniciado
+**Metodologia:**
+
+- Classificação países: Top 20% vs Bottom 20% por felicidade média (2015-2019)
+- Análise temporal comparativa das emissões
+- Cálculo de variação percentual de CO2 por país
+- 29 países felizes vs 29 países infelizes
+
+**Resultados:**
+
+**Grupos Identificados:**
+
+- **Países Felizes (Top 20%)**: 29 países (Argentina, Australia, Austria, Belgium, etc.)
+- **Países Infelizes (Bottom 20%)**: 29 países (Afghanistan, Angola, Benin, Botswana, etc.)
+
+**Performance de Redução de CO2:**
+
+- **Países Felizes**: Variação média **-2.5%** (2015-2019)
+- **Países Infelizes**: Variação média **+22.4%** (2015-2019)
+- **Diferença**: **24.9 pontos percentuais** a favor dos países felizes
+
+**Evolução Temporal (CO2 Médio):**
+
+- **2015**: Felizes: 315.823kt | Infelizes: 26.891kt
+- **2019**: Felizes: 307.456kt | Infelizes: 32.941kt
+
+**Gap entre Grupos por Ano:**
+
+- Diferença (Felizes - Infelizes) mantém-se consistente: ~280.000kt
+- Países felizes emitem **10x mais** que países infelizes em termos absolutos
+
+**Análise:**
+
+- **Países felizes reduzem emissões, infelizes aumentam**: Clara divergência nas trajetórias temporais
+- **Paradoxo do nível vs tendência**: Países felizes emitem mais em termos absolutos, mas **estão reduzindo**; países infelizes emitem menos mas **estão aumentando**
+- **Convergência improvável**: Gap absoluto mantém-se estável (~280.000kt) ao longo do período
+- **Padrões regionais**: Países felizes (desenvolvidos) implementam políticas ambientais; países infelizes (em desenvolvimento) priorizam crescimento econômico
+- **Conclusão:** Existe **desacoplamento temporal** - países com alta qualidade de vida conseguem manter felicidade enquanto reduzem emissões, enquanto países com baixa qualidade de vida ainda estão na fase de crescimento das emissões. Sugere que **políticas ambientais efetivas requerem primeiro um nível mínimo de desenvolvimento socioeconômico**.
+
+**Visualização:** insight_6_trajetoria_temporal.png
 
 ---
 
@@ -173,18 +335,96 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 
 ---
 
-### Insight 10 🚧
+### Insight 10 ✅
 
-**Pergunta:** Qual componente da felicidade oferece melhor custo-benefício ambiental?
+**Pergunta:** Baseado em tendências 2015-2019, quais países apresentam trajetória IDEAL (↑felicidade + ↓CO2), PREOCUPANTE (↓felicidade + ↑CO2), TRADE-OFF (↑felicidade + ↑CO2) ou ESTAGNAÇÃO (↓felicidade + ↓CO2)?
 
-**Status:** Não iniciado
+**Metodologia:**
+
+- Regressão linear (polyfit) para calcular slopes de felicidade e CO2 (2015-2019)
+- Classificação em 4 quadrantes por direção das tendências
+- Projeção exploratória para 2025
+- Análise de 133 países com dados completos
+
+**Resultados:**
+
+**Distribuição de Trajetórias:**
+
+- **TRADE-OFF**: 51 países (38.3%) - ↑Felicidade ↑CO2
+- **PREOCUPANTE**: 40 países (30.1%) - ↓Felicidade ↑CO2
+- **ESTAGNAÇÃO**: 23 países (17.3%) - ↓Felicidade ↓CO2
+- **IDEAL**: 19 países (14.3%) - ↑Felicidade ↓CO2
+
+**Top 5 Países por Trajetória:**
+
+**IDEAL (19 países) - Desenvolvimento Sustentável:**
+
+1. **Bulgaria**: H=+0.230/ano, CO2=-1.153kt/ano | 2025: Felicidade=6.46, CO2=32.790kt
+2. **Chad**: H=+0.190/ano, CO2=-30kt/ano | 2025: Felicidade=5.53, CO2=1.998kt
+3. **Denmark**: H=+0.017/ano, CO2=-1.019kt/ano | 2025: Felicidade=7.69, CO2=24.844kt
+4. **Ecuador**: H=+0.010/ano, CO2=-413kt/ano | 2025: Felicidade=6.07, CO2=36.558kt
+5. **Estonia**: H=+0.115/ano, CO2=-1.139kt/ano | 2025: Felicidade=6.56, CO2=5.636kt
+
+**PREOCUPANTE (40 países) - Declínio Insustentável:**
+
+1. **Afghanistan**: H=-0.047/ano, CO2=+103kt/ano
+2. **Albania**: H=-0.055/ano, CO2=+105kt/ano
+3. **Algeria**: H=-0.185/ano, CO2=+4.059kt/ano
+4. **Australia**: H=-0.015/ano, CO2=+1.954kt/ano
+5. **Azerbaijan**: H=-0.010/ano, CO2=+797kt/ano
+
+**TRADE-OFF (51 países) - Crescimento Poluente:**
+
+- **Maioria dos países** está nesta categoria
+- Incluem nações em desenvolvimento priorizando crescimento econômico
+
+**ESTAGNAÇÃO (23 países) - Recessão:**
+
+- Inclui **Argentina, Brazil, Colombia** com declínio em ambas métricas
+
+**Análise:**
+
+- **Apenas 14.3% dos países seguem trajetória IDEAL** - desenvolvimento sustentável é ainda **exceção, não regra**
+- **68.4% dos países** estão em trajetórias problemáticas (Trade-off + Preocupante)
+- **Trade-off é o padrão dominante** (38.3%) - países escolhem crescimento à custa do meio ambiente
+- **Trajetória Preocupante é alarmante** (30.1%) - declínio social E ambiental simultaneamente
+- **Projeções 2025**: Se tendências se mantiverem, gap entre países sustentáveis e insustentáveis irá **aumentar drasticamente**
+- **Conclusão:** A **maioria dos países está em trajetórias insustentáveis**. Apenas pequeno grupo (principalmente europeus como Denmark, Estonia) consegue desacoplar felicidade de emissões. **Urgência de mudança de modelo de desenvolvimento** antes que trajetórias se consolidem.
+
+**⚠️ DISCLAIMER:** Projeções baseadas em tendências lineares 2015-2019. Resultados são exploratórios e não consideram eventos futuros.
+
+**Visualização:** insight_10_projecoes_2025.png
+
+## Conclusões Gerais
+
+### Principais Descobertas:
+
+1. **Correlação Felicidade-CO2 é muito fraca** (+0.072) - felicidade não é bom preditor de emissões
+2. **Desenvolvimento econômico é o principal driver de emissões**, não felicidade per se
+3. **Pequenos países são mais "eficientes"**, mas principalmente por baixo desenvolvimento industrial
+4. **Países desenvolvidos conseguem reduzir emissões mantendo felicidade**, países em desenvolvimento ainda aumentam
+5. **Apenas 14.3% dos países seguem trajetória sustentável** (↑felicidade ↓CO2)
+6. **Componentes materiais da felicidade** (PIB, saúde) **aumentam emissões**; componentes sociais (generosidade, confiança) **reduzem**
+7. **Existe "dívida ambiental"** - países que poluíram historicamente são mais felizes hoje
+8. **Catching-up sustentável é possível** - países de renda média conseguem crescer reduzindo emissões
+
+### Implicações Políticas:
+
+- **Desenvolvimento sustentável requer mudança de paradigma**: PIB não deve ser único objetivo
+- **Priorizar componentes sociais da felicidade** (confiança, generosidade) sobre consumo material
+- **Transferência de tecnologia limpa** é crucial para países em desenvolvimento
+- **Políticas ambientais efetivas** requerem primeiro nível mínimo de desenvolvimento socioeconômico
 
 ## Tecnologias
 
-- Python 3.14
+- Python 3.12
 - pandas, numpy, matplotlib
+- pipenv (gerenciamento de ambiente)
 
 ## Como Executar
 
-pip install -r requirements.txt
-python src/insight_n.py (com n sendo o numero do insight desejado)
+```bash
+# Instalar dependências
+pip install -r requirements.txt python src/insight_n.py (com n sendo o numero do insight desejado)
+
+```
