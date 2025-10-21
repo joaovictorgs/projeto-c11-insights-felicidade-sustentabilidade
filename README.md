@@ -13,7 +13,7 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 
 ### Insight 1 ✅
 
-**Pergunta:** Países com maiores índices de felicidade apresentam menores emissões de CO2 per capita? Qual é a força e direção dessa correlação no período 2015-2019?
+**Pergunta:** Países mais felizes emitem menos CO₂ per capita? Qual é a força e direção dessa correlação global?
 
 **Metodologia:**
 
@@ -59,7 +59,7 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 
 ### Insight 2 ✅
 
-**Pergunta:** Qual é a contribuição relativa de cada componente da felicidade para as emissões de CO2?
+**Pergunta:** Quais componentes da felicidade (PIB, liberdade, expectativa de vida etc.) estão mais relacionados à sustentabilidade ambiental?
 
 **Metodologia:**
 
@@ -90,7 +90,7 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 
 ### Insight 3 ✅
 
-**Pergunta:** Como PIB per capita, felicidade e emissões de CO2 se relacionam simultaneamente? Existe um threshold de PIB onde a felicidade aumenta sem proporcional aumento nas emissões?
+**Pergunta:** É possível um país crescer economicamente e aumentar sua felicidade sem aumentar suas emissões de CO₂?
 
 **Metodologia:**
 
@@ -138,7 +138,7 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 
 ### Insight 4 ✅
 
-**Pergunta:** Quais países são mais 'eficientes' em gerar felicidade com menores emissões de CO2 per capita? Como se distribuem os países eficientes vs ineficientes?
+**Pergunta:** Quais países conseguem gerar mais felicidade com menos emissões de CO₂?
 
 **Metodologia:**
 
@@ -192,7 +192,7 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 
 ### Insight 5 ✅
 
-**Pergunta:** Países que emitiram mais CO2 historicamente são mais felizes hoje?
+**Pergunta:** Os países que mais poluíram historicamente são os mais felizes hoje? Existe uma "dívida ambiental" global?
 
 **Metodologia:**
 
@@ -238,7 +238,7 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 
 ### Insight 6 ✅
 
-**Pergunta:** Países mais felizes (top 20%) reduziram suas emissões de CO2 per capita mais rapidamente que países menos felizes (bottom 20%) no período 2015-2019?
+**Pergunta:** Os países mais felizes reduziram suas emissões de CO₂ mais rapidamente que os menos felizes entre 2015 e 2019?
 
 **Metodologia:**
 
@@ -284,7 +284,7 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 
 ### Insight 7 ✅
 
-**Pergunta:** Países em desenvolvimento conseguem aumentar felicidade sem aumentar CO2 proporcionalmente?
+**Pergunta:** Os países emergentes estão conseguindo crescer de forma mais limpa que os desenvolvidos?
 
 **Metodologia:**
 
@@ -321,7 +321,7 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 
 ### Insight 8 ✅
 
-**Pergunta:** Indicadores de governança (Freedom, Trust) ajudam a reduzir emissões?
+**Pergunta:** Países com melhor governança (menos corrupção, mais liberdade) conseguem reduzir mais suas emissões de CO₂?
 
 **Metodologia:**
 
@@ -357,7 +357,7 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 
 ### Insight 9 ✅
 
-**Pergunta:** Existe um cluster de países com alta felicidade E baixas emissões (modelo nórdico de coesão social)?
+**Pergunta:** Existe um "modelo nórdico" de sustentabilidade — alta felicidade, alta longevidade e baixas emissões?
 
 **Metodologia:**
 
@@ -410,7 +410,7 @@ Este projeto analisa a relação entre felicidade e sustentabilidade ambiental a
 
 ### Insight 10 ✅
 
-**Pergunta:** Baseado em tendências 2015-2019, quais países apresentam trajetória IDEAL (↑felicidade + ↓CO2), PREOCUPANTE (↓felicidade + ↑CO2), TRADE-OFF (↑felicidade + ↑CO2) ou ESTAGNAÇÃO (↓felicidade + ↓CO2)?
+**Pergunta:** Quais países caminham para um futuro sustentável — aumentando felicidade e reduzindo CO₂ ao mesmo tempo?
 
 **Metodologia:**
 
