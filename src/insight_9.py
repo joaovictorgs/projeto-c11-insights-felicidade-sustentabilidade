@@ -55,7 +55,6 @@ def main():
     
     fig, ax = plt.subplots(figsize=(14, 9))
     
-    # Plotar clusters com tamanhos e cores diferenciadas
     if len(em_desenvolvimento) > 0:
         ax.scatter(em_desenvolvimento['Family'], em_desenvolvimento['CO2_Emissions'], 
                    label=f'🌱 Em Desenvolvimento ({len(em_desenvolvimento)})', 
@@ -71,7 +70,6 @@ def main():
                    label=f'🌟 Modelo Nórdico ({len(modelo_nordico)})', 
                    alpha=0.9, s=250, color='#27ae60', edgecolors='darkgreen', linewidth=2, marker='*', zorder=5)
         
-        # Adicionar nomes dos países do Modelo Nórdico
         for idx, row in modelo_nordico.iterrows():
             ax.annotate(row['Country'], 
                        xy=(row['Family'], row['CO2_Emissions']),
@@ -80,10 +78,8 @@ def main():
                        bbox=dict(boxstyle='round,pad=0.3', facecolor='lightgreen', alpha=0.7, edgecolor='darkgreen'),
                        zorder=6)
     
-    # Usar escala logarítmica no eixo Y para melhor visualização
     ax.set_yscale('log')
     
-    # Adicionar linhas de referência para os thresholds
     family_threshold = df_clean['Family'].quantile(0.75)
     co2_threshold = df_clean['CO2_Emissions'].quantile(0.25)
     
